@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 100vw;
   background-color: rgb(0, 0, 0, 0.3);
@@ -19,6 +19,7 @@ export const DivContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 300px;
 
   h2 {
     text-align: center;

@@ -5,10 +5,22 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobaStyle } from "./styles/style";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
+    <ToastContainer
+      position="top-right"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      draggable
+      pauseOnHover={false}
+    />
     <GlobaStyle />
     <App />
   </BrowserRouter>

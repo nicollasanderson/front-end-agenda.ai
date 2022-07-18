@@ -47,8 +47,8 @@ const DayModal = ({ setDayModal, day, formatedDay }) => {
           }`}</h2>
           <div>
             {daySchedules.length > 0 ? (
-              daySchedules.map((schedule) => (
-                <ScheduleCard schedule={schedule} />
+              daySchedules.map((schedule, index) => (
+                <ScheduleCard key={index} schedule={schedule} />
               ))
             ) : (
               <NoneScheduleP>Nenhum agendamento realizado</NoneScheduleP>
