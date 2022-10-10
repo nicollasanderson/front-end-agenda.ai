@@ -7,4 +7,6 @@ export const StyledDiv = styled.div`
     position: fixed;
     width: 1920px;
   }
+
+  margin-top: -30px;
 `;

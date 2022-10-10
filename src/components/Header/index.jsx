@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { BiCalendarEdit } from "react-icons/bi";
 import { StyledHeader } from "./style";
+import { UsedUserrovider } from "../../providers/user";
 
-const Header = ({ user }) => {
+const Header = () => {
+  const { user } = UsedUserrovider();
+
   return (
     <StyledHeader>
       <nav>

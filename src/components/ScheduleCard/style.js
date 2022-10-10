@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const DivContainer = styled(motion.div)`
-  width: 150px;
+  width: 70%;
   background-color: #ccc;
   margin: 15px;
   cursor: pointer;

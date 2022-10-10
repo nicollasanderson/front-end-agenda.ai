@@ -6,7 +6,7 @@ export const DivMain = styled.div`
   justify-content: center;
   flex-flow: column;
   align-items: center;
-  height: 80%;
+  height: 90%;
 
   div {
     width: 600px;

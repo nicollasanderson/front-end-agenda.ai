@@ -7,9 +7,13 @@ import {
   SectionMain,
 } from "./style";
 import { CgProfile } from "react-icons/cg";
+import { UsedUserrovider } from "../../providers/user";
+import { UseTokenProvider } from "../../providers/token";
 
-const Profile = ({ setUser, setToken, user }) => {
+const Profile = () => {
   const navigate = useNavigate();
+  const { user, setUser } = UsedUserrovider();
+  const { setToken, token } = UseTokenProvider();
 
   const handleLogout = () => {
     window.localStorage.clear();

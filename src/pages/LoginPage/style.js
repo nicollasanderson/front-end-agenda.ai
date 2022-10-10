@@ -5,7 +5,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const DivContainer = styled.div`
-  height: 89vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

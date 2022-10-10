@@ -7,12 +7,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { UseTokenProvider } from "../../providers/token";
+import { UsedUserrovider } from "../../providers/user";
 
-const LoginPage = ({ user, setToken, setUser }) => {
+const LoginPage = () => {
   const schema = yup.object().shape({
     email: yup.string().required(" obrigatório").email(" inválido"),
     password: yup.string().required(" obrigatória"),
   });
+
+  const { user, setUser } = UsedUserrovider();
+  const { setToken } = UseTokenProvider();
 
   const navigate = useNavigate();
 

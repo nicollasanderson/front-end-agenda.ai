@@ -2,11 +2,24 @@ import styled from "styled-components";
 
 export const StyledSection = styled.section`
   width: 100%;
-  height: 89vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
+
+  .schedules__quantity {
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const CalendarContainer = styled.div`
