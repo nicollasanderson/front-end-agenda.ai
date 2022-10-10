@@ -9,12 +9,17 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { UseTokenProvider } from "../../providers/token";
 import { UsedUserrovider } from "../../providers/user";
+import CustomInput from "../../components/CustomInput";
+import { useState } from "react";
+import { BiTimeFive } from "react-icons/bi";
 
 const LoginPage = () => {
   const schema = yup.object().shape({
     email: yup.string().required(" obrigatório").email(" inválido"),
     password: yup.string().required(" obrigatória"),
   });
+
+  const [loading, setLoading] = useState(false);
 
   const { user, setUser } = UsedUserrovider();
   const { setToken } = UseTokenProvider();
@@ -28,6 +33,7 @@ const LoginPage = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const handleLogin = (data) => {
+    setLoading(true);
     app
       .post("user/login/", data)
       .then((response) => {
@@ -47,6 +53,7 @@ const LoginPage = () => {
       })
       .catch((err) => {
         toast.error("Email ou senha inválidos!");
+        setLoading(false);
       });
   };
 
@@ -61,7 +68,21 @@ const LoginPage = () => {
       <div>
         <h1>Login</h1>
         <form onSubmit={handleSubmit(handleLogin)}>
-          <StyledLabel
+          <CustomInput
+            errors={errors}
+            inputName="E-mail"
+            type="email"
+            register={register}
+            registerName="email"
+          />
+          <CustomInput
+            errors={errors}
+            inputName="Senha"
+            type="password"
+            register={register}
+            registerName="password"
+          />
+          {/* <StyledLabel
             htmlFor="email"
             errColor={errors.email ? "red" : "black"}
           >
@@ -74,14 +95,14 @@ const LoginPage = () => {
           >
             Senha {errors.password?.message}
           </StyledLabel>
-          <input type="password" name="password" {...register("password")} />
+          <input type="password" name="password" {...register("password")} /> */}
           <motion.button
             type="submit"
             initial={{ scale: 1 }}
             whileHover={{ scale: 0.9 }}
             transition={{ duration: 0.1 }}
           >
-            <p>Entrar!</p>
+            {loading ? <BiTimeFive /> : <p>Entrar!</p>}
           </motion.button>
         </form>
         <p>

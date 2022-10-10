@@ -1,16 +1,12 @@
 import styled from "styled-components";
 
-export const StyledLabel = styled.label`
-  color: ${({ errColor }) => errColor};
-`;
-
 export const DivContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  div {
+  > div {
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 400px;
@@ -36,15 +32,6 @@ export const DivContainer = styled.div`
       justify-content: center;
       flex-flow: column;
       margin: 0 auto;
-
-      input {
-        height: 50px;
-        margin-bottom: 20px;
-        margin-top: 5px;
-        border-radius: 7px;
-        border: 1px solid #ccc;
-        padding-left: 15px;
-      }
 
       button {
         background-color: #0000ff;
