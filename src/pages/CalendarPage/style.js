@@ -79,6 +79,10 @@ export const CalendarContainer = styled.div`
   }
   .react-calendar__month-view__days__day--weekend {
     color: red;
+    &:hover {
+      color: white;
+      background-color: red;
+    }
   }
   .react-calendar__month-view__days__day--neighboringMonth {
     color: #ccc;
@@ -86,6 +90,10 @@ export const CalendarContainer = styled.div`
   .react-calendar__tile--now {
     background-color: #9d00fe;
     color: white;
+  }
+
+  @media (max-width: 330px) {
+    /* margin-bottom: 100px; */
   }
 `;
 
@@ -104,6 +112,10 @@ export const ButtonsDiv = styled.div`
     &:hover {
       background-color: #0000ff;
       color: white;
+    }
+
+    @media (max-width: 330px) {
+      margin-top: 350px;
     }
   }
 `;

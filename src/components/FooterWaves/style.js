@@ -8,5 +8,5 @@ export const StyledDiv = styled.div`
     width: 1920px;
   }
 
-  margin-top: -30px;
+  margin-top: -20px;
 `;

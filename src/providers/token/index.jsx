@@ -4,7 +4,7 @@ const TokenContext = createContext("");
 
 export const TokenProvider = ({ children }) => {
   const [token, setToken] = useState(
-    JSON.parse(localStorage.getItem("@agendaai:user")) || null
+    JSON.parse(localStorage.getItem("@agendaai:token")) || null
   );
 
   return (

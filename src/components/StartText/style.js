@@ -34,10 +34,22 @@ export const DivMain = styled.div`
 
   @media (max-width: 700px) {
     div {
-      width: 400px;
+      width: 100%;
     }
     h2 {
       font-size: 30px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    div {
+      margin-top: 200px;
+    }
+    button {
+      width: 90%;
+      p {
+        font-size: 30px;
+      }
     }
   }
 `;

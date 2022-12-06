@@ -50,6 +50,7 @@ const DayModal = ({ setDayModal, day, formatedDay }) => {
         <MakeScheduleModal
           setMakeScheduleModal={setMakeScheduleModal}
           formatedDay={formatedDay}
+          dayName={daysName[weekDay]}
         />
       )}
       <StyledDiv onClick={handleModal}>

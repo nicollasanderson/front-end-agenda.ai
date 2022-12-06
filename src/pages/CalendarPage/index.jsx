@@ -5,7 +5,7 @@ import { ButtonsDiv, CalendarContainer, StyledSection } from "./style";
 import { isWeekend, lightFormat, getMonth } from "date-fns";
 import app from "../../services/api";
 import { UsedUserrovider } from "../../providers/user";
-import { UseTokenProvider } from "../../providers/token";
+// import { UseTokenProvider } from "../../providers/token";
 
 const CalendarPage = () => {
   const [value, onChange] = useState(new Date());
@@ -70,6 +70,7 @@ const CalendarPage = () => {
       )}
 
       <StyledSection>
+        <span></span>
         <ButtonsDiv>
           {user && (
             <>
