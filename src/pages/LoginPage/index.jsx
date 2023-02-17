@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import app from "../../services/api";
-import { DivContainer, StyledLabel } from "./style";
+import { DivContainer } from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
@@ -12,6 +12,7 @@ import { UsedUserrovider } from "../../providers/user";
 import CustomInput from "../../components/CustomInput";
 import { useState } from "react";
 import { BiTimeFive } from "react-icons/bi";
+import jwt_decode from "jwt-decode";
 
 const LoginPage = () => {
   const schema = yup.object().shape({
@@ -35,19 +36,14 @@ const LoginPage = () => {
   const handleLogin = (data) => {
     setLoading(true);
     app
-      .post("user/login/", data)
+      .post("/user/login/", data)
       .then((response) => {
-        console.log(response);
         localStorage.setItem(
           "@agendaai:token",
-          JSON.stringify(response.data.token)
+          JSON.stringify(response.data.access)
         );
-        localStorage.setItem(
-          "@agendaai:user",
-          JSON.stringify(response.data.user)
-        );
-        setToken(response.data.token);
-        setUser(response.data.user);
+        setToken(response.data.access);
+        setUser(jwt_decode(response.data.access));
         navigate("/calendario");
         toast.success("Logado com sucesso!");
       })

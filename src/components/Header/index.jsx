@@ -12,8 +12,6 @@ const Header = () => {
     setWidth(window.innerWidth);
   };
 
-  // console.log(width);
-
   return (
     <StyledHeader>
       <nav>

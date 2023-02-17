@@ -30,7 +30,7 @@ export const DivMain = styled.div`
 
 export const DivContainer = styled.div`
   width: 800px;
-  height: 700px;
+  padding: 50px 0;
   background-color: white;
   border-radius: 10px;
   overflow: auto;
@@ -43,6 +43,7 @@ export const DivContainer = styled.div`
     display: flex;
     align-items: center;
     flex-flow: column;
+    height: 98%;
   }
 `;
 
@@ -92,5 +93,6 @@ export const DivForm = styled.div`
 export const FormContainer = styled.div`
   display: flex;
   width: 90%;
+  height: 100%;
   justify-content: center;
 `;

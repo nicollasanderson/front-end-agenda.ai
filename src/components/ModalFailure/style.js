@@ -28,21 +28,16 @@ export const DivMain = styled.div`
       margin: 0 10px;
       font-weight: bold;
     }
-    /* > button {
-      position: fixed;
-      top: 270px;
-      right: 450px;
-      width: 30px;
-      height: 30px;
-      background-color: white;
-      border: 2px solid;
-      border-radius: 50%;
-    } */
   }
   svg {
     width: 100px;
     height: 100px;
-    color: green;
+    color: red;
     margin-bottom: 20px;
+  }
+
+  .PLink__Failure__Modal {
+    cursor: pointer;
+    text-decoration: underline;
   }
 `;

@@ -5,6 +5,7 @@ import app from "../../services/api";
 import ScheduleCard from "../ScheduleCard";
 import MakeScheduleModal from "../MakeScheduleModal";
 import { UsedUserrovider } from "../../providers/user";
+import ExitButton from "../ExitButton";
 
 const DayModal = ({ setDayModal, day, formatedDay }) => {
   const [daySchedules, setDaySchedules] = useState("");
@@ -36,7 +37,7 @@ const DayModal = ({ setDayModal, day, formatedDay }) => {
 
   const verifyDay = () => {
     app
-      .get(`schedule/${formatedDay}/`)
+      .get(`schedule/${formatedDay}/date/`)
       .then((response) => {
         console.log(response);
         setDaySchedules(response.data);
@@ -56,6 +57,7 @@ const DayModal = ({ setDayModal, day, formatedDay }) => {
       <StyledDiv onClick={handleModal}>
         <DivContainer onClick={(e) => e.stopPropagation()}>
           <div>
+            <ExitButton onClick={() => setDayModal(false)} />
             <h2>{`Agendamentos do dia ${formatedDay.slice(8, 10)} - ${
               daysName[weekDay]
             }`}</h2>
@@ -65,14 +67,18 @@ const DayModal = ({ setDayModal, day, formatedDay }) => {
                   onClick={handleMakeSchedule}
                   className="button__make__schedule"
                 >
-                  +
+                  Agendar para esse dia
                 </button>
               )}
             </DivButtons>
             <div>
               {daySchedules.length > 0 ? (
                 daySchedules.map((schedule, index) => (
-                  <ScheduleCard key={index} schedule={schedule} />
+                  <ScheduleCard
+                    key={index}
+                    schedule={schedule}
+                    verifyDay={verifyDay}
+                  />
                 ))
               ) : (
                 <NoneScheduleP>Nenhum agendamento realizado</NoneScheduleP>

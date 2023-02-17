@@ -47,6 +47,8 @@ export const FormMain = styled.form`
   flex-flow: column;
   margin-top: 10px;
   align-items: center;
+  justify-content: center;
+  height: 100%;
   > div {
     display: flex;
   }

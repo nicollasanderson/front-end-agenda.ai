@@ -98,6 +98,8 @@ export const CalendarContainer = styled.div`
 `;
 
 export const ButtonsDiv = styled.div`
+  display: flex;
+
   button {
     width: 190px;
     height: 50px;

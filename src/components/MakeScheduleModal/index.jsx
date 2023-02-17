@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ExitButton from "../ExitButton";
 import FormHoje from "../FormHoje";
 
 import { DivButton } from "../FormHoje/style";
@@ -20,48 +21,17 @@ const MakeScheduleModal = ({ setMakeScheduleModal, formatedDay, dayName }) => {
 
   return (
     <DivMain onClick={() => setMakeScheduleModal(false)}>
-      <DivContainer onClick={(e) => e.stopPropagation()}>
+      <DivContainer onClick={(event) => event.stopPropagation()}>
+        <ExitButton onClick={() => setMakeScheduleModal(false)} />
         <div>
           <h1>Faça seu agendamento!</h1>
           <MainContent>
-            <h2>Escolha o tipo de agendamento</h2>
             <h3>
               {dayName} - {dataFormatada}{" "}
             </h3>
-            <div>
-              <button
-                className="button__make__schedule"
-                onClick={() => setTypeSchedule("hoje")}
-              >
-                Agendar para esse dia
-              </button>
-              <button
-                className="button__make__schedule"
-                onClick={() => setTypeSchedule("mesDia")}
-              >
-                Para o mês inteiro nesse dia
-              </button>
-              <button
-                className="button__make__schedule"
-                onClick={() => setTypeSchedule("livre")}
-              >
-                Escolha livre
-              </button>
-            </div>
           </MainContent>
-
           <FormContainer>
-            {typeSchedule === "" ? (
-              <></>
-            ) : typeSchedule === "hoje" ? (
-              <FormHoje formatedDay={formatedDay} />
-            ) : typeSchedule === "mesDia" ? (
-              <>mes dia</>
-            ) : typeSchedule === "livre" ? (
-              <>livre</>
-            ) : (
-              <></>
-            )}
+            <FormHoje formatedDay={formatedDay} />
           </FormContainer>
         </div>
       </DivContainer>

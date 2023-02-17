@@ -8,10 +8,6 @@ export const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .blue__coming__schedule {
-    background-color: #00cdff;
-  }
 `;
 
 export const DivContainer = styled.div`
@@ -21,15 +17,15 @@ export const DivContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
   display: flex;
+  flex-flow: column;
   justify-content: center;
-  align-items: center;
 
   h2 {
     text-align: center;
   }
 
   > div {
-    width: 95%;
+    width: 100%;
     height: 90%;
     overflow: auto;
 
@@ -42,7 +38,7 @@ export const DivContainer = styled.div`
 `;
 
 export const NoneScheduleP = styled.p`
-  margin: 40% auto;
+  margin: 30% auto;
 `;
 
 export const DivButtons = styled.div`
@@ -51,12 +47,13 @@ export const DivButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 25px 0;
 
   .button__make__schedule {
-    width: 50px;
     border: 2px solid green;
     border-radius: 5px;
-    height: 40px;
+    padding: 10px;
+    height: 70px;
     background-color: white;
     color: green;
     transition: 0.5s;

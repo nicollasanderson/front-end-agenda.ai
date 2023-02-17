@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { UsedUserrovider } from "../../providers/user";
-import { DivContainer } from "./style";
+import app from "../../services/api";
+import { DivContainer, DivDeleteButton } from "./style";
+import { BsFillTrashFill } from "react-icons/bs";
+import { UseTokenProvider } from "../../providers/token";
+import { UseScheduleProvider } from "../../providers/schedules";
 
-const ScheduleCard = ({ schedule }) => {
+const ScheduleCard = ({ schedule, verifyDay }) => {
   const [className, setClassName] = useState("blue__coming__schedule");
+  const { token } = UseTokenProvider();
+  const { hasCreatedSchedule, setHasCreatedSchedule } = UseScheduleProvider();
 
   const scheduleDate = new Date(schedule.scheduling_time_start);
   const { user } = UsedUserrovider();
@@ -12,6 +18,21 @@ const ScheduleCard = ({ schedule }) => {
     setClassName("red__past_schedule");
   }
 
+  const deleteRequest = () => {
+    app
+      .delete(`/schedule/${schedule.id}/`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log("deletado!");
+        verifyDay();
+        setHasCreatedSchedule(hasCreatedSchedule + 1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <DivContainer
@@ -19,17 +40,23 @@ const ScheduleCard = ({ schedule }) => {
         whileHover={{ scale: 1.02 }}
         className={className}
       >
-        <h4>{schedule.user.first_name}</h4>
-        <p>
-          Local: {schedule.room.name} - Bloco {schedule.room.block}
-        </p>
-        <p></p>
-        <p>
-          {`Início as ${schedule.scheduling_time_start}`} -
-          {`Fim as ${schedule.scheduling_time_end}`}
-        </p>
-        <br />
-        <p>{schedule.description}</p>
+        <div className="containerInfos">
+          <h4>{schedule.user.first_name}</h4>
+          <p>
+            Local: {schedule.room.name} - Bloco {schedule.room.block}
+          </p>
+          <p>
+            {`Início as ${schedule.scheduling_time_start}`} -
+            {`Fim as ${schedule.scheduling_time_end}`}
+          </p>
+          <br />
+          <p>{schedule.description}</p>
+        </div>
+        {schedule.user.id === user.id && (
+          <DivDeleteButton onClick={() => deleteRequest()}>
+            <BsFillTrashFill />
+          </DivDeleteButton>
+        )}
       </DivContainer>
     </>
   );

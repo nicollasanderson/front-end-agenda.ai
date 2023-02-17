@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { UseTokenProvider } from "../../providers/token";
 import ModalSucess from "../ModalSucess";
+import ModalFailure from "../ModalFailure";
+import { UseScheduleProvider } from "../../providers/schedules";
 
 const FormHoje = ({ formatedDay }) => {
   const schema = yup.object().shape({
@@ -25,11 +27,12 @@ const FormHoje = ({ formatedDay }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const [inicioPreenchido, setInicioPreenchido] = useState();
-  const [finalPreenchido, setFinalPreenchido] = useState();
-  const [blocoPreenchido, setBlocoPreenchido] = useState();
-  const [salaPreenchido, setSalaPreenchido] = useState();
   const [loading, setLoading] = useState(false);
   const [roomsBlock, setRoomsBlock] = useState([]);
+  const [sucessCreate, setSucessCreate] = useState("");
+  const [data, setData] = useState({});
+  const { hasCreatedSchedule, setHasCreatedSchedule } = UseScheduleProvider();
+  const { token } = UseTokenProvider();
 
   const arrayHorarios = [
     "07:00:00",
@@ -47,8 +50,8 @@ const FormHoje = ({ formatedDay }) => {
     "16:10:00",
     "17:00:00",
     "17:50:00",
-    "18:40:00",
     "18:10:00",
+    "18:40:00",
     "19:00:00",
     "19:50:00",
     "20:40:00",
@@ -59,19 +62,18 @@ const FormHoje = ({ formatedDay }) => {
   const arrayBlocos = [1, 2, 3, 4, 5, 6, 7];
 
   const findRoomByBlock = (event) => {
-    console.log("chegou aqui");
     setLoading(true);
     if (event.target.value !== "") {
       app
         .get(`/room/${event.target.value}/`)
         .then((response) => {
           setRoomsBlock(response.data);
-          console.log(response.data);
         })
-        .catch((err) => setRoomsBlock([]))
+        .catch((err) => {
+          setRoomsBlock([]);
+        })
         .finally(() => {
           setLoading(false);
-          setBlocoPreenchido(event.target.value);
         });
     } else {
       setRoomsBlock([]);
@@ -79,23 +81,32 @@ const FormHoje = ({ formatedDay }) => {
     }
   };
 
-  const { token } = UseTokenProvider();
-
   const submitForm = (data) => {
     data.scheduling_date_start = formatedDay;
     data.scheduling_date_end = formatedDay;
-    console.log(token);
+
     app
       .post("/schedule/", data, {
-        headers: { Authorization: `Token ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then()
-      .catch((err) => console.log(err));
+      .then((response) => {
+        setSucessCreate(true);
+        setHasCreatedSchedule(hasCreatedSchedule + 1);
+      })
+      .catch((err) => {
+        setData(err.response);
+        setSucessCreate(false);
+      });
   };
-
   return (
     <FormMain onSubmit={handleSubmit(submitForm)}>
-      <ModalSucess />
+      {sucessCreate === true && (
+        <ModalSucess setSucessCreate={setSucessCreate} />
+      )}
+      {sucessCreate === false && (
+        <ModalFailure data={data} setSucessCreate={setSucessCreate} />
+      )}
+
       <div>
         <DivFormContainer>
           <label
@@ -125,9 +136,7 @@ const FormHoje = ({ formatedDay }) => {
             <select
               name="horarioFinalizacao"
               id="horarioFinalizacao"
-              {...register("scheduling_time_end", {
-                onChange: (event) => setFinalPreenchido(event.target.value),
-              })}
+              {...register("scheduling_time_end")}
             >
               <option value="">Selecione um horário</option>
 
@@ -170,13 +179,11 @@ const FormHoje = ({ formatedDay }) => {
               name="sala"
               id="sala"
               disabled={loading === false ? false : true}
-              {...register("room", {
-                onChange: (event) => setSalaPreenchido(event.target.value),
-              })}
+              {...register("room")}
             >
               <option value="">Selecione uma sala</option>
               {roomsBlock.map((sala) => (
-                <option key={sala} value={sala.id}>
+                <option key={sala.id} value={sala.id}>
                   {sala.name}
                 </option>
               ))}
