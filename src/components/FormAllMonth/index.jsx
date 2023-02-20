@@ -11,13 +11,12 @@ import { UseTokenProvider } from "../../providers/token";
 import ModalSucess from "../ModalSucess";
 import ModalFailure from "../ModalFailure";
 
-const FormAllMonth = ({ month }) => {
+const FormAllMonth = ({ month, setSucessCreate, setData }) => {
   const [inicioPreenchido, setInicioPreenchido] = useState();
   const [loading, setLoading] = useState(false);
   const [roomsBlock, setRoomsBlock] = useState([]);
-  const [sucessCreate, setSucessCreate] = useState("");
-  const [agendamentosFalha, setAgendamentosFalha] = useState([]);
-  const [data, setData] = useState({});
+
+  const [agendamentosFalha] = useState([]);
   const { hasCreatedSchedule, setHasCreatedSchedule } = UseScheduleProvider();
   const { token } = UseTokenProvider();
 
@@ -131,12 +130,6 @@ const FormAllMonth = ({ month }) => {
 
   return (
     <DivMainMonth>
-      {sucessCreate === true && (
-        <ModalSucess setSucessCreate={setSucessCreate} />
-      )}
-      {sucessCreate === false && (
-        <ModalFailure data={data} setSucessCreate={setSucessCreate} />
-      )}
       <form onSubmit={handleSubmit(submitForm)}>
         <div>
           <label htmlFor="segunda">

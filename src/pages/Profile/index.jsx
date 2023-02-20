@@ -9,9 +9,12 @@ import {
 import { CgProfile } from "react-icons/cg";
 import { UsedUserrovider } from "../../providers/user";
 import { UseTokenProvider } from "../../providers/token";
+import MySchedulesModal from "../../components/MySchedulesModal";
+import { useState } from "react";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [mySchedulesModal, setMySchedulesModal] = useState(false);
   const { user, setUser } = UsedUserrovider();
   const { setToken, token } = UseTokenProvider();
 
@@ -22,6 +25,10 @@ const Profile = () => {
     navigate("/login");
   };
 
+  const handleMySchedules = () => {
+    setMySchedulesModal(true);
+  };
+
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -30,11 +37,10 @@ const Profile = () => {
 
   return (
     <SectionMain>
+      {mySchedulesModal && (
+        <MySchedulesModal setMySchedulesModal={setMySchedulesModal} />
+      )}
       <ContainerProfile>
-        <ContainerButtons>
-          <button onClick={handleLogout}>Sair</button>
-          <button>Meus Agendamentos</button>
-        </ContainerButtons>
         <DivContent>
           <div>
             {user && (
@@ -48,10 +54,13 @@ const Profile = () => {
                   <CgProfile />
                 )}
                 <h1>{`${user.first_name} ${user.last_name}`}</h1>
+                <ContainerButtons>
+                  <button onClick={handleLogout}>Sair</button>
+                  <button onClick={handleMySchedules}>Meus Agendamentos</button>
+                </ContainerButtons>
               </>
             )}
           </div>
-          <div></div>
         </DivContent>
       </ContainerProfile>
     </SectionMain>

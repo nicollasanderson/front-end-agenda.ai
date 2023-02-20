@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const DivContainer = styled(motion.div)`
-  width: 70%;
+  width: 90%;
   background: radial-gradient(#1fe4f5, #3fbafe);
   margin: 15px;
   border-radius: 10px;

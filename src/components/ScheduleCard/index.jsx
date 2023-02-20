@@ -5,8 +5,9 @@ import { DivContainer, DivDeleteButton } from "./style";
 import { BsFillTrashFill } from "react-icons/bs";
 import { UseTokenProvider } from "../../providers/token";
 import { UseScheduleProvider } from "../../providers/schedules";
+import { toast } from "react-toastify";
 
-const ScheduleCard = ({ schedule, verifyDay }) => {
+const ScheduleCard = ({ schedule, verifyDay = () => {} }) => {
   const [className, setClassName] = useState("blue__coming__schedule");
   const { token } = UseTokenProvider();
   const { hasCreatedSchedule, setHasCreatedSchedule } = UseScheduleProvider();
@@ -24,12 +25,12 @@ const ScheduleCard = ({ schedule, verifyDay }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log("deletado!");
         verifyDay();
         setHasCreatedSchedule(hasCreatedSchedule + 1);
+        toast.success("Agendamento excluído!");
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Erro ao exluir, faça o login novamente!");
       });
   };
 

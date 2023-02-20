@@ -26,6 +26,11 @@ const Header = () => {
           <></>
         ) : (
           <ul>
+            {user && user.is_admin && (
+              <li>
+                <Link to="/painel">Painel</Link>
+              </li>
+            )}
             <li>
               <Link to="/calendario">Calendário</Link>
             </li>

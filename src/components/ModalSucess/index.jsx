@@ -1,5 +1,6 @@
 import { DivMain } from "./style";
 import { VscPass } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 const ModalSucess = ({ data, setSucessCreate }) => {
   return (
@@ -13,7 +14,10 @@ const ModalSucess = ({ data, setSucessCreate }) => {
           agora ou continue para um novo agendamento.
         </p>
         <div>
-          <button>Meus Agendamentos</button>
+          <Link to="/perfil">
+            <button>Meus Agendamentos</button>
+          </Link>
+
           <button onClick={() => setSucessCreate("")}>Continuar</button>
         </div>
       </div>

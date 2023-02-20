@@ -11,7 +11,7 @@ export const SectionMain = styled.section`
 export const ContainerProfile = styled.div`
   width: 80%;
   max-width: 900px;
-  height: 600px;
+  height: 400px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0px 10px 34px 20px rgba(0, 0, 0, 0.1);
@@ -23,9 +23,10 @@ export const ContainerProfile = styled.div`
 export const ContainerButtons = styled.div`
   display: flex;
   flex-flow: row-reverse;
-
+  width: 100%;
+  margin: 20px 0;
   button {
-    width: 20%;
+    width: 100%;
     height: 50px;
     background-color: white;
     border: 3px solid #0000ff;
@@ -43,11 +44,13 @@ export const ContainerButtons = styled.div`
 `;
 
 export const DivContent = styled.div`
-  height: 85%;
+  height: 100%;
   margin-top: 20px;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
-  div {
+  > div {
     width: 50%;
     display: flex;
     flex-flow: column;
