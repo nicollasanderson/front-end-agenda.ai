@@ -1,15 +1,15 @@
 import { createContext, useContext, useState } from "react";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const UserContext = createContext("");
 
 export const UserProvider = ({ children }) => {
-  const token = localStorage.getItem("@agendaai:token") || null;
+  const token = localStorage.getItem("@agendaai:token") || "";
 
   try {
-    var decode = jwt_decode(token);
+    var decode = jwtDecode(token);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
   const userObjt = decode;
 

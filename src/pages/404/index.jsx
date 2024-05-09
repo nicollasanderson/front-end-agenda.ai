@@ -5,7 +5,7 @@ const Page404 = () => {
     <SectionMain>
       <DivText>
         <figure>
-          <img src="https://i.imgur.com/KU4CNgy.png" alt="404 not found cat" />
+          <img src="./src/assets/KU4CNgy.png" alt="404 not found cat" />
           <figcaption>
             Figura de um gato escondido em baixo de alguns papeis com o rabo de
             fora

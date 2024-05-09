@@ -8,10 +8,10 @@ const CustomInput = ({
   registerName,
 }) => {
   return (
-    <StyledMain errColor={errors[registerName] ? "red" : "#ccc"}>
+    <StyledMain $errColor={errors[registerName] ? "red" : "#ccc"}>
       <StyledLabel
         htmlFor={registerName}
-        errColor={errors[registerName]?.message ? "red" : "black"}
+        $errColor={errors[registerName]?.message ? "red" : "black"}
       >
         {inputName} {errors[registerName]?.message}
       </StyledLabel>

@@ -134,7 +134,7 @@ const CalendarPage = () => {
             value={value}
             onClickDay={handleDay}
             tileContent={handleDayHasSchedule}
-            calendarType={"US"}
+            calendarType={"gregory"}
           />
         </CalendarContainer>
       </StyledSection>

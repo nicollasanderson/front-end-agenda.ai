@@ -53,7 +53,7 @@ const ScheduleCard = ({ schedule, verifyDay = () => {} }) => {
           <br />
           <p>{schedule.description}</p>
         </div>
-        {schedule.user.id === user.id && (
+        {schedule?.user?.id === user?.id && (
           <DivDeleteButton onClick={() => deleteRequest()}>
             <BsFillTrashFill />
           </DivDeleteButton>

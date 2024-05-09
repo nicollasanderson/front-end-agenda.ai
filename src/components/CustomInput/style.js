@@ -9,9 +9,11 @@ export const StyledMain = styled.div`
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 7px;
+    background-color: white;
     border: 1px solid ${({ errColor }) => errColor};
     padding-left: 15px;
     width: 100%;
+    color: black;
   }
 `;
 

@@ -91,6 +91,16 @@ export const CalendarContainer = styled.div`
     background-color: #9d00fe;
     color: white;
   }
+  .react-calendar__navigation{
+    span, button{
+      color: black;
+    }
+  }
+  .react-calendar__navigation__arrow{
+    font-size: 20px;
+    margin-top: 0;
+    padding: 0;
+  }
 
   @media (max-width: 330px) {
     /* margin-bottom: 100px; */

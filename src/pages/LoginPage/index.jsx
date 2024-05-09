@@ -12,7 +12,7 @@ import { UsedUserrovider } from "../../providers/user";
 import CustomInput from "../../components/CustomInput";
 import { useState } from "react";
 import { BiTimeFive } from "react-icons/bi";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
   const schema = yup.object().shape({
@@ -43,7 +43,7 @@ const LoginPage = () => {
           JSON.stringify(response.data.access)
         );
         setToken(response.data.access);
-        setUser(jwt_decode(response.data.access));
+        setUser(jwtDecode(response.data.access));
         navigate("/calendario");
         toast.success("Logado com sucesso!");
       })
@@ -78,20 +78,7 @@ const LoginPage = () => {
             register={register}
             registerName="password"
           />
-          {/* <StyledLabel
-            htmlFor="email"
-            errColor={errors.email ? "red" : "black"}
-          >
-            E-mail {errors.email?.message}
-          </StyledLabel>
-          <input type="text" name="email" {...register("email")} />
-          <StyledLabel
-            htmlFor="password"
-            errColor={errors.password ? "red" : "black"}
-          >
-            Senha {errors.password?.message}
-          </StyledLabel>
-          <input type="password" name="password" {...register("password")} /> */}
+
           <motion.button
             type="submit"
             initial={{ scale: 1 }}
